@@ -1,0 +1,22 @@
+<h1>News Aggregator</h1>
+
+<p>Here are some lazy person articles for ya.</p>
+
+<ol>
+<% @articles.each do |article| %>
+  <li>
+    <%= "#{article["title"].upcase}" %>
+    <ul>
+      <% if article["url"].include?("http") %>
+        <li>URL: <a href="<%= article["url"] %>" target="_blank"><%= article["url"] %></a></li>
+      <% else %>
+        <li>URL: <a href="http://<%= article["url"] %>" target="_blank"><%= "#{article["url"]}" %></a></li>
+      <% end %>
+      <li>Description: <%= "#{article["description"]}" %></li>
+    </ul>
+  </li>
+<% end %>
+</ol>
+
+<a href="/articles/new">Add a new article to the list</a>
+<a href="/random">View a random article</a>
